@@ -2,8 +2,17 @@ require 'rails_helper'
 
 RSpec.describe 'in user index', type: :feature do
   it 'user can see all books' do
-    book_1 = Book.create(:title, :author, :page_count, :pub_year, :thumbnail_url)
-    book_2 = Book.create(:title, :author, :page_count, :pub_year, :thumbnail_url)
+    book_1 = Book.create(title: "Practical Object-Oriented Design in Ruby",
+                         author: "Sandi Metz",
+                         page_count: 247,
+                         pub_year: 2013,
+                         thumbnail_url: "https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w")
+    book_2 = Book.create(title: "Perepolis Rising",
+                         author: "James S.A. Corey",
+                         page_count: 583,
+                         pub_year: 2017,
+                         thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg")
+
 
     visit '/books'
 
