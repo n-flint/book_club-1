@@ -11,7 +11,7 @@ RSpec.describe 'in user index', type: :feature do
                          author: "James S.A. Corey",
                          page_count: 583,
                          pub_year: 2017,
-                         thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg")
+                         thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg") 
 
 
     visit '/books'
