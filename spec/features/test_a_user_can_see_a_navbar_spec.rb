@@ -34,14 +34,14 @@ RSpec.describe "As a visitor" do
             expect(page).to have_link("Books")
         end
         
-        it 'can redirect to books page by clicking link' do 
+        xit 'can redirect to books page by clicking link' do 
             visit books_path
             click_link('Books')
             page.status_code.should be 200
             expect(current_path).to eq(books_path)
         end
 
-        it 'can redirect to home page by clicking link' do 
+        xit 'can redirect to home page by clicking link' do 
             visit books_path
             click_link('Home')
             page.status_code.should be 200
