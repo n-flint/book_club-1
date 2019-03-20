@@ -9,6 +9,13 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
+  <header>
+    <div class="topnav">
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'Books', books_path %>
+     </div>
+  </header>
+
   <body>
     <%= yield %>
   </body>
