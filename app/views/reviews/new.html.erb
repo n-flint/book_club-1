@@ -1,0 +1,21 @@
+<%= form_for [@book, @review] do |f| %>
+  <p>
+    <%= f.label :heading %><br/>
+    <%= f.text_field :heading %>
+  </p>
+  <p>
+    <%= f.label :score %><br/>
+    <%= f.number_field :score %>
+  </p>
+  <p>
+    <%= f.label :full_review %><br/>
+    <%= f.text_field :full_review %>
+  </p>
+  <p>
+    <%= f.label :username %><br/>
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.submit  %>
+  </p>
+<% end %>
