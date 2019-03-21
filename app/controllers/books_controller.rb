@@ -1,5 +1,11 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    if params[:sort] == "descending_pages"
+      @books = Book.order(page_count: :desc)
+    elsif params[:sort] == "ascending_pages"
+      @books = Book.order(page_count: :asc)
+    else
+      @books = Book.all
+    end
   end
 end
