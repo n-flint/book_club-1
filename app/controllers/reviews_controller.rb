@@ -8,12 +8,15 @@ class ReviewsController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
     @review = @book.reviews.new(review_params)
+
     @review.save
     redirect_to book_path(@book)
   end
 
 private
   def review_params
-    params.require(:review).permit(:heading, :score, :full_review, :username)
+    rp = params.require(:review).permit(:heading, :score, :full_review, :username)
+    rp[:username].titleize
+    rp
   end
 end
