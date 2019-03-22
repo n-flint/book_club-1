@@ -1,0 +1,23 @@
+<h1>Title: <%= @book.title %></h1>
+  <p>
+    <ul><li>Page Count: <%= @book.page_count %></li>
+      <li>Publication Year: <%= @book.pub_year %></li>
+      <li>Author(s):<% @book.authors.each do |author|%>
+        <ul><li><%= author.name %></li></ul>
+        <% end %></li>
+      <li>Reviews:<% @book.reviews.each do |review|%>
+        <ul><li>Review title: <%= review.heading %></li>
+            <li>Reviewed by: <%= review.username %></li>
+            <li>Rating: <%= review.score %>/5</li>
+            <li><%= review.full_review %></li></ul>
+        <% end %></li>
+      <li id="review-stats">Review Stats:
+        <ul>
+        </ul>
+      </li>
+    </ul>
+  </p>
+<%= link_to "<< Back to Books Home", books_path %>
+
+<%= link_to "Add Review", new_book_review_path(@book) %>
+
