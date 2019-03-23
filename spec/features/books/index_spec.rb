@@ -38,4 +38,42 @@ RSpec.describe 'in user index', type: :feature do
 
     expect(current_path).to eq(book_path(book_1))
   end
+
+  it 'can click Most Pages link to sort by descending page length' do
+    book_1 = Book.create(title: "Practical Object-Oriented Design in Ruby",
+      page_count: 247,
+      pub_year: 2013,
+      thumbnail_url: "https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w")
+    book_2 = Book.create(title: "Perepolis Rising",
+      page_count: 583,
+      pub_year: 2017,
+      thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg")
+
+    visit books_path
+    click_link('Most Pages')
+
+    i1 = page.body.index(book_1.title)
+    i2 = page.body.index(book_2.title)
+
+    expect(i1).to be > i2
+  end
+
+  it 'can click Least Pages link to sort by ascending page length' do
+    book_1 = Book.create(title: "Practical Object-Oriented Design in Ruby",
+      page_count: 247,
+      pub_year: 2013,
+      thumbnail_url: "https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w")
+    book_2 = Book.create(title: "Perepolis Rising",
+      page_count: 583,
+      pub_year: 2017,
+      thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg")
+
+    visit books_path
+    click_link('Least Pages')
+
+    i1 = page.body.index(book_1.title)
+    i2 = page.body.index(book_2.title)
+
+    expect(i1).to be < i2
+  end
 end
