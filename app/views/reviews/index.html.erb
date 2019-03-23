@@ -1,18 +1,15 @@
-
-<h1> <%= @reviews.first.username %></h1>
+<h1> <%= @user %></h1>
+<section id="sort-reviews">
+  <%= link_to 'Newest Reviews', reviews_path(arg: @user, sort: "newest")%>
+  <%= link_to 'Oldest Reviews', reviews_path(arg: @user, sort: "oldest")%>
+</section>
 
 <% @reviews.each do |r| %>
-<section id=<%="review-#{r.id}"%>>
-  <p><%= r.heading %></p>
-  <p><%= r.score %></p>
-  <p><%= r.full_review %></p>
-  <p><%= r.created_at.to_date.to_s %></p>
-
-  <%= image_tag "#{r.book.thumbnail_url}" %></p>
-
-</section>
-<!-- <img src=<%= r.book.thumbnail_url %>> -->
-
-  <!-- <li class='review' id=<%= "review-#{r.id}" %>> -->
-
+  <section class="review" id=<%="review-#{r.id}"%>>
+    <p><%= r.heading %></p>
+    <p><%= r.score %></p>
+    <p><%= r.full_review %></p>
+    <p><%= r.created_at.to_date.to_s %></p>
+    <%= image_tag "#{r.book.thumbnail_url}" %></p>
+  </section>
 <% end %>
