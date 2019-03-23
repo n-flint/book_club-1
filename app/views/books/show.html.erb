@@ -5,6 +5,7 @@
       <li>Author(s):<% @book.authors.each do |author|%>
         <ul><li><%= author.name %></li></ul>
         <% end %></li>
+      <li><img src="<%= @book.thumbnail_url %>" alt="Book Thumbnail"></li>
       <li>Reviews:<% @book.reviews.each do |review|%>
         <ul><li>Review title: <%= review.heading %></li>
             <li>Reviewed by: <%= review.username %></li>
