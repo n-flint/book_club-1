@@ -1,4 +1,7 @@
+
 <h1>Title: <%= link_to @book.title, book_path(@book) %></h1>
+<h3>Average Review Score: <%= @book.average_review_score %></h3>
+<h3>Total Reviews: <%= @book.review_count %></h3>
 
   <p>
     <ul><li>Page Count: <%= @book.page_count %></li>
@@ -32,7 +35,6 @@
               </ul>
             <% end %></li>
           </ul>
-          <li>Average Review Score: <%= @book.average_review_score %></li>
         </ul>
       </ul>
   </p>
