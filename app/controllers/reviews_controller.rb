@@ -13,8 +13,15 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    name = params[:arg]
-    @reviews = Review.where(username: name)
+    @user = params[:arg]
+    if params[:sort] == "newest"
+      @reviews = Review.where(username: @user).newest
+    elsif
+      params[:sort] == "oldest"
+      @reviews = Review.where(username: @user).oldest
+    else
+        @reviews = Review.where(username: @user)
+    end
   end
 
 private
