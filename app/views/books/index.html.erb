@@ -1,8 +1,17 @@
 <h1>All Books</h1>
 
+<ul class='sort-links'>
+    <%= link_to 'Most Pages', books_path(sort: 'descending_pages') %>
+    <%= link_to 'Least Pages', books_path(sort: 'ascending_pages') %>
+    <%= link_to 'Highest Ratings', books_path(sort: 'descending_rating') %>
+    <%= link_to 'Lowest Ratings', books_path(sort: 'ascending_rating') %>
+    <%= link_to 'Most Reviews', books_path(sort: 'descending_reviews') %>
+    <%= link_to 'Least Reviews', books_path(sort: 'ascending_reviews') %>
+</ul>
+
 <% @books.each do |book| %>
   <h2>Title: <%= link_to book.title, book_path(book) %></h2>
   <p>Pages: <%= book.page_count %></p>
   <p>Publication Year: <%= book.pub_year %></p>
-  <img src="<%= book.thumbnail_url %>" alt="Book Thumbnail">
+  <img height="200" width="150" src="<%= book.thumbnail_url %>" alt="Book Thumbnail">
 <% end %>
