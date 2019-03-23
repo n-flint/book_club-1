@@ -13,6 +13,6 @@ class Book < ApplicationRecord
     end
 
     def average_review_score
-      reviews.average(:score)
+      reviews.average(:score).round(2)
     end
 end
