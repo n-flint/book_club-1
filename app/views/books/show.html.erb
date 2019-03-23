@@ -11,13 +11,28 @@
             <li>Rating: <%= review.score %>/5</li>
             <li><%= review.full_review %></li></ul>
         <% end %></li>
-      <li id="review-stats">Review Stats:
-        <ul>
-        </ul>
-      </li>
-    </ul>
+        <li id="review-stats">Review Stats:
+          <ul id="highest">
+            <li>Highest 3 Reviews: <% @book.highest_three_reviews.each do |review| %>
+              <ul>
+                <li><%= review.heading %></li>
+                <li><%= review.score %>/5</li>
+                <li><%= review.username %></li>
+              </ul>
+            <% end %></li>
+          </ul>
+          <ul id="lowest">
+            <li>Lowest 3 Reviews: <% @book.lowest_three_reviews.each do |review| %>
+              <ul>
+                <li><%= review.heading %></li>
+                <li><%= review.score %>/5</li>
+                <li><%= review.username %></li>
+              </ul>
+            <% end %></li>
+          </ul>
+        </li>
+      </ul>
   </p>
 <%= link_to "<< Back to Books Home", books_path %>
 
 <%= link_to "Add Review", new_book_review_path(@book) %>
-
