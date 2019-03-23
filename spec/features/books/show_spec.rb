@@ -24,6 +24,8 @@ RSpec.describe 'in book show page', type: :feature do
     visit book_path(book_1)
 
     expect(page).to have_content("Title: #{book_1.title}")
+    expect(page).to have_content("Average Review Score: #{book_1.average_review_score}")
+    expect(page).to have_content("Total Reviews: #{book_1.review_count}")
     expect(page).to have_content("Page Count: #{book_1.page_count}")
     expect(page).to have_content("Publication Year: #{book_1.pub_year}")
     expect(page).to have_content("Author(s):")
@@ -36,78 +38,36 @@ RSpec.describe 'in book show page', type: :feature do
     expect(page).to have_content("Reviewed by: #{review_1b.username}")
     expect(page).to have_content("Rating: #{review_1b.score}/5")
     expect(page).to have_content("#{review_1b.full_review}")
-    # within '#review-stats' do
-    #   expect(page).to have_content("Review Stats:")
-      # expect(page).to have_content("Highest 3 Reviews:")
-    #   within '#highest' do
-    #     expect(page).to have_content("#{review_2a.heading}")
-    #     expect(page).to have_content("#{review_2a.score}")
-    #     expect(page).to have_content("#{review_2a.username}")
-    #     expect(page).to have_content("#{review_2b.heading}")
-    #     expect(page).to have_content("#{review_2b.score}")
-    #     expect(page).to have_content("#{review_2b.username}")
-    #     expect(page).to have_content("#{review_2c.heading}")
-    #     expect(page).to have_content("#{review_2c.score}")
-    #     expect(page).to have_content("#{review_2c.username}")
-    #   end
-    #   expect(page).to have_content("Lowest 3 Reviews:")
-    #   within '#lowest' do
-    #     expect(page).to have_content("#{review_2b.heading}")
-    #     expect(page).to have_content("#{review_2b.score}")
-    #     expect(page).to have_content("#{review_2b.username}")
-    #     expect(page).to have_content("#{review_2c.heading}")
-    #     expect(page).to have_content("#{review_2c.score}")
-    #     expect(page).to have_content("#{review_2c.username}")
-    #     expect(page).to have_content("#{review_2d.username}")
-    #     expect(page).to have_content("#{review_2d.heading}")
-    #     expect(page).to have_content("#{review_2d.score}")
-    #   end
-    #     expect(page).to have_content("#{book_2.reviews.average_review}")
-    # end
-    # visit book_path(book_2)
-    #
-    # expect(page).to have_content("Title: #{book_2.title}")
-    # expect(page).to have_content("Page Count: #{book_2.page_count}")
-    # expect(page).to have_content("Publication Year: #{book_2.pub_year}")
-    # expect(page).to have_content("Author(s):")
-    # expect(page).to have_content("#{author_2.name}")
-    # expect(page).to have_content("Reviews:")
-    # expect(page).to have_content("Review title: #{review_2a.heading}")
-    # expect(page).to have_content("Reviewed by: #{review_2a.username}")
-    # expect(page).to have_content("Rating: #{review_2a.score}")
-    # expect(page).to have_content("#{review_2a.full_review}")
-    # expect(page).to have_content("Review title: #{review_2b.heading}")
-    # expect(page).to have_content("Reviewed by: #{review_2b.username}")
-    # expect(page).to have_content("Rating: #{review_2b.score}")
-    # expect(page).to have_content("#{review_2b.full_review}")
-    #
-    # within '#review-stats' do
-    #   expect(page).to have_content("Highest 3 Reviews:")
-    #   within '#highest' do
-    #     expect(page).to have_content("#{review_1a.heading}")
-    #     expect(page).to have_content("#{review_1a.score}")
-    #     expect(page).to have_content("#{review_1a.username}")
-    #     expect(page).to have_content("#{review_1b.heading}")
-    #     expect(page).to have_content("#{review_1b.score}")
-    #     expect(page).to have_content("#{review_1b.username}")
-    #     expect(page).to have_content("#{review_1c.heading}")
-    #     expect(page).to have_content("#{review_1c.score}")
-    #     expect(page).to have_content("#{review_1c.username}")
-    #   end
-    #   expect(page).to have_content("Lowest 3 Reviews:")
-    #   within '#lowest' do
-    #     expect(page).to have_content("#{review_1b.heading}")
-    #     expect(page).to have_content("#{review_1b.score}")
-    #     expect(page).to have_content("#{review_1b.username}")
-    #     expect(page).to have_content("#{review_1c.heading}")
-    #     expect(page).to have_content("#{review_1c.score}")
-    #     expect(page).to have_content("#{review_1c.username}")
-    #     expect(page).to have_content("#{review_1d.username}")
-    #     expect(page).to have_content("#{review_1d.heading}")
-    #     expect(page).to have_content("#{review_1d.score}")
-    #   end
-    #     expect(page).to have_content("#{book_1.reviews.average_review}")
-    # end
+    within '#review-stats' do
+      expect(page).to have_content("Review Stats:")
+      expect(page).to have_content("Highest 3 Reviews:")
+      within '#highest' do
+        expect(page).to have_content("#{review_1a.heading}")
+        expect(page).to have_content("#{review_1a.score}")
+        expect(page).to have_content("#{review_1a.username}")
+        expect(page).to have_content("#{review_1b.heading}")
+        expect(page).to have_content("#{review_1b.score}")
+        expect(page).to have_content("#{review_1b.username}")
+        expect(page).to have_content("#{review_1c.heading}")
+        expect(page).to have_content("#{review_1c.score}")
+        expect(page).to have_content("#{review_1c.username}")
+        expect(page).to_not have_content("#{review_1d.heading}")
+        expect(page).to_not have_content("#{review_1d.username}")
+        expect(page).to_not have_content("#{review_1d.score}")
+      end
+      expect(page).to have_content("Lowest 3 Reviews:")
+      within '#lowest' do
+        expect(page).to have_content("#{review_1b.heading}")
+        expect(page).to have_content("#{review_1b.score}")
+        expect(page).to have_content("#{review_1b.username}")
+        expect(page).to have_content("#{review_1c.heading}")
+        expect(page).to have_content("#{review_1c.score}")
+        expect(page).to have_content("#{review_1c.username}")
+        expect(page).to have_content("#{review_1d.username}")
+        expect(page).to have_content("#{review_1d.heading}")
+        expect(page).to have_content("#{review_1d.score}")
+      end
+    end
 
     click_on('<< Back to Books Home')
     expect(current_path).to eq(books_path)
