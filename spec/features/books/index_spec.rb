@@ -76,4 +76,52 @@ RSpec.describe 'in user index', type: :feature do
 
     expect(i1).to be < i2
   end
+
+  before :each do
+    @book_1 = Book.create!(title: "In Search Of Lost Time", page_count: 4215, pub_year: 1913, thumbnail_url: 'https://images.penguinrandomhouse.com/cover/9780679645689')
+    @book_2 = Book.create(title: "Don Quixote", page_count: 928, pub_year: 1605, thumbnail_url: "https://i.pinimg.com/originals/2e/42/d2/2e42d25ee87ad6bb5f512bd86e099233.jpg")
+    @review_3 = @book_2.reviews.create(heading: "Best Book", score: 5, full_review: "This was really something", username: "Jeremy")
+    @review_2 = @book_2.reviews.create(heading: "What?", score: 3, full_review: "I can't tell if this book is good or not", username: "Tupac")
+    @review_1 = @book_1.reviews.create(heading: "Great", score: 5, full_review: "Read this", username: "Tupac")
+  end
+
+  it 'can click Highest Ratings to sort by descending rating order' do
+    visit books_path
+    click_link('Highest Ratings')
+
+    i1 = page.body.index(@book_1.title)
+    i2 = page.body.index(@book_2.title)
+    
+    expect(i1).to be < i2
+  end
+
+  it 'can click Lowest Ratings to sort by ascending rating order' do
+    visit books_path
+    click_link('Lowest Ratings')
+
+    i1 = page.body.index(@book_1.title)
+    i2 = page.body.index(@book_2.title)
+    
+    expect(i1).to be > i2
+  end
+
+  it 'can click Most Reviews to sort by descending rating order' do
+    visit books_path
+    click_link('Most Reviews')
+
+    i1 = page.body.index(@book_1.title)
+    i2 = page.body.index(@book_2.title)
+    
+    expect(i1).to be > i2
+  end
+
+  it 'can click Least Reviews to sort by ascending rating order' do
+    visit books_path
+    click_link('Least Reviews')
+
+    i1 = page.body.index(@book_1.title)
+    i2 = page.body.index(@book_2.title)
+    
+    expect(i1).to be < i2
+  end
 end

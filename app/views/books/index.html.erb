@@ -3,6 +3,10 @@
 <ul class='sort-links'>
     <%= link_to 'Most Pages', books_path(sort: 'descending_pages') %>
     <%= link_to 'Least Pages', books_path(sort: 'ascending_pages') %>
+    <%= link_to 'Highest Ratings', books_path(sort: 'descending_rating') %>
+    <%= link_to 'Lowest Ratings', books_path(sort: 'ascending_rating') %>
+    <%= link_to 'Most Reviews', books_path(sort: 'descending_reviews') %>
+    <%= link_to 'Least Reviews', books_path(sort: 'ascending_reviews') %>
 </ul>
 
 <% @books.each do |book| %>
