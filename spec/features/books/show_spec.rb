@@ -25,7 +25,7 @@ RSpec.describe 'in book show page', type: :feature do
 
     expect(page).to have_content("Title: #{book_1.title}")
     expect(page).to have_content("Average Review Score: #{book_1.average_review_score}")
-    expect(page).to have_content("Total Reviews: #{book_1.reviews.count}")
+    expect(page).to have_content("Total Reviews: #{book_1.review_count}")
     expect(page).to have_content("Page Count: #{book_1.page_count}")
     expect(page).to have_content("Publication Year: #{book_1.pub_year}")
     expect(page).to have_content("Author(s):")
@@ -67,8 +67,6 @@ RSpec.describe 'in book show page', type: :feature do
         expect(page).to have_content("#{review_1d.heading}")
         expect(page).to have_content("#{review_1d.score}")
       end
-        expect(page).to have_content("Average Review Score: ")
-        expect(page).to have_content("#{book_1.average_review_score}")
     end
 
     click_on('<< Back to Books Home')
