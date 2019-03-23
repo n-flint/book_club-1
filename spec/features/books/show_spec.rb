@@ -65,7 +65,8 @@ RSpec.describe 'in book show page', type: :feature do
         expect(page).to have_content("#{review_1d.heading}")
         expect(page).to have_content("#{review_1d.score}")
       end
-    #     expect(page).to have_content("#{book_2.reviews.average_review}")
+        expect(page).to have_content("Average Review Score: ")
+        expect(page).to have_content("#{book_1.average_review_score}")
     end
     # visit book_path(book_2)
     #
