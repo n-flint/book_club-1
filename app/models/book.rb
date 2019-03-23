@@ -11,4 +11,8 @@ class Book < ApplicationRecord
     def lowest_three_reviews
       reviews.order(:score).first(3)
     end
+
+    def average_review_score
+      reviews.average(:score)
+    end
 end
