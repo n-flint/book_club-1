@@ -37,5 +37,9 @@ RSpec.describe Book, type: :model do
       it ".highest_three_reviews" do
         expect(@book_1.highest_three_reviews).to eq([@review_1a, @review_1b, @review_1c])
       end
+
+      it ".lowest_three_reviews" do
+        expect(@book_1.lowest_three_reviews).to eq([@review_1d, @review_1c, @review_1b])
+      end
     end
 end

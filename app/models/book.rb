@@ -7,4 +7,8 @@ class Book < ApplicationRecord
     def highest_three_reviews
       reviews.order(:score).last(3).reverse
     end
+
+    def lowest_three_reviews
+      reviews.order(:score).first(3)
+    end
 end
