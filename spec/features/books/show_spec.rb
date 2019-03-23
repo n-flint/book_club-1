@@ -23,7 +23,8 @@ RSpec.describe 'in book show page', type: :feature do
 
     visit book_path(book_1)
 
-    expect(page).to have_content("Title: #{book_1.title}")
+    # expect(page).to have_content("Title: #{book_1.title}")
+    expect(page).to have_link("#{book_1.title}")
     expect(page).to have_content("Page Count: #{book_1.page_count}")
     expect(page).to have_content("Publication Year: #{book_1.pub_year}")
     expect(page).to have_content("Author(s):")

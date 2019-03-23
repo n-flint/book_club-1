@@ -6,6 +6,7 @@
 
 <% @reviews.each do |r| %>
   <section class="review" id=<%="review-#{r.id}"%>>
+    <p><%= link_to r.book.title, book_path(r.book) %></p>
     <p><%= r.heading %></p>
     <p><%= r.score %></p>
     <p><%= r.full_review %></p>

@@ -1,4 +1,5 @@
-<h1>Title: <%= @book.title %></h1>
+<h1>Title: <%= link_to @book.title, book_path(@book) %></h1>
+
   <p>
     <ul><li>Page Count: <%= @book.page_count %></li>
       <li>Publication Year: <%= @book.pub_year %></li>
@@ -20,4 +21,3 @@
 <%= link_to "<< Back to Books Home", books_path %>
 
 <%= link_to "Add Review", new_book_review_path(@book) %>
-
