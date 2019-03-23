@@ -5,19 +5,36 @@
       <li>Author(s):<% @book.authors.each do |author|%>
         <ul><li><%= author.name %></li></ul>
         <% end %></li>
+      <li><img src="<%= @book.thumbnail_url %>" alt="Book Thumbnail"></li>
       <li>Reviews:<% @book.reviews.each do |review|%>
         <ul><li>Review title: <%= review.heading %></li>
             <li>Reviewed by: <%= review.username %></li>
             <li>Rating: <%= review.score %>/5</li>
             <li><%= review.full_review %></li></ul>
         <% end %></li>
-      <li id="review-stats">Review Stats:
-        <ul>
+        <ul id="review-stats">Review Stats:
+          <ul id="highest">
+            <li>Highest 3 Reviews: <% @book.highest_three_reviews.each do |review| %>
+              <ul>
+                <li><%= review.heading %></li>
+                <li><%= review.score %>/5</li>
+                <li><%= review.username %></li>
+              </ul>
+            <% end %></li>
+          </ul>
+          <ul id="lowest">
+            <li>Lowest 3 Reviews: <% @book.lowest_three_reviews.each do |review| %>
+              <ul>
+                <li><%= review.heading %></li>
+                <li><%= review.score %>/5</li>
+                <li><%= review.username %></li>
+              </ul>
+            <% end %></li>
+          </ul>
+          <li>Average Review Score: <%= @book.average_review_score %></li>
         </ul>
-      </li>
-    </ul>
+      </ul>
   </p>
 <%= link_to "<< Back to Books Home", books_path %>
 
 <%= link_to "Add Review", new_book_review_path(@book) %>
-

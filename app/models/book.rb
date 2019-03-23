@@ -3,4 +3,16 @@ class Book < ApplicationRecord
     has_many :reviews
     has_many :bookauthors
     has_many :authors, through: :bookauthors
+
+    def highest_three_reviews
+      reviews.order(:score).last(3).reverse
+    end
+
+    def lowest_three_reviews
+      reviews.order(:score).first(3)
+    end
+
+    def average_review_score
+      reviews.average(:score)
+    end
 end
