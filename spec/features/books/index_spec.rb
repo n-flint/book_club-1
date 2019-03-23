@@ -9,12 +9,12 @@ RSpec.describe 'in user index', type: :feature do
     book_2 = Book.create(title: "Perepolis Rising",
                          page_count: 583,
                          pub_year: 2017,
-                         thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg") 
+                         thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg")
 
 
     visit '/books'
 
-    expect(page).to have_content("Title: #{book_1.title}")
+    expect(page).to have_link("#{book_1.title}")
     # expect(page).to have_content("Author: #{book_1.author}")
     expect(page).to have_content("Pages: #{book_1.page_count}")
     expect(page).to have_content("Publication Year: #{book_1.pub_year}")
