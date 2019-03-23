@@ -1,4 +1,5 @@
-<h1>Title: <%= @book.title %></h1>
+
+<h1>Title: <%= link_to @book.title, book_path(@book) %></h1>
 <h3>Average Review Score: <%= @book.average_review_score %></h3>
 <h3>Total Reviews: <%= @book.review_count %></h3>
 
