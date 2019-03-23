@@ -53,13 +53,7 @@ RSpec.describe "as a visitor" do
       expect(page.all('.review')[1]).to have_content(@review_2.heading)
     end
 
-    it 'can click book title link to show page' do
-      visit reviews_path(arg: @review_1.username)
 
-      click_link "#{@book_1.title}"
-
-      expect(current_path).to eq(book_path(@book_1))
-    end
   end
 end
 
