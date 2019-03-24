@@ -26,7 +26,7 @@ describe 'a visitor sees the book index statistics box' do
     @review_4b = @book_4.reviews.create(score: 4, heading: 'test it good', full_review: 'test it test it real goooooodd', username: 'Jeremy')
   end
   
-  it 'should display the top 3 highest rated books' do
+  xit 'should display the top 3 highest rated books' do
     visit books_path
     
     within "#top-rated" do
@@ -51,8 +51,13 @@ describe 'a visitor sees the book index statistics box' do
         expect(page).to_not have_content(@book_3.average_review_score)
     end
 
-    within '#most-reviews' do
-        
+    within '#user-review-stats' do
+        expect(page).to have_content()
+        expect(page).to have_content()
+        expect(page).to have_content()
+        expect(page).to have_content()
+        expect(page).to have_content()
+        expect(page).to have_content()
     end
   end
 end
