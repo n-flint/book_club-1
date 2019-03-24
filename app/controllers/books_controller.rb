@@ -60,6 +60,8 @@ class BooksController < ApplicationController
   end
 
   def author_params
-    params.require(:book).permit(:authors)
+    author = params.require(:book).permit(:authors)
+    author[:authors].titleize.strip!
+    author
   end
 end
