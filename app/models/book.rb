@@ -24,4 +24,18 @@ class Book < ApplicationRecord
   def review_count
     reviews.count
   end
+
+  def self.highest_three_scores
+    highest_scores = Book.all.sort_by do |book|
+       book.average_review_score
+     end.reverse
+     highest_scores[0..2]
+  end
+
+  def self.lowest_three_scores
+    lowest_scores = Book.all.sort_by do |book|
+       book.average_review_score
+     end
+    lowest_scores[0..2]
+  end
 end

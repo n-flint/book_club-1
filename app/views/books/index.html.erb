@@ -1,6 +1,27 @@
 <h1>All Books</h1>
 <%= link_to "Add book", new_book_path %>
 
+<ul id="stats-box">
+  <h3>Highest Rated Books</h3>
+  <li id="top-rated">
+      <% @stat_books.highest_three_scores.each do |book| %>
+        <%= book.title %>
+        <%= book.average_review_score %>
+        <br>
+      <% end %>
+  </li>
+  <br>
+  <h3>Lowest Rated Books</h3>
+  <li id="lowest-rated">
+      <% @stat_books.lowest_three_scores.each do |book| %>
+        <%= book.title %>
+        <%= book.average_review_score %>
+        <br>
+      <% end %>
+  </li>
+  
+</ul>
+
 <ul class='sort-links'>
     <%= link_to 'Most Pages', books_path(sort: 'descending_pages') %>
     <%= link_to 'Least Pages', books_path(sort: 'ascending_pages') %>
@@ -10,6 +31,7 @@
     <%= link_to 'Least Reviews', books_path(sort: 'ascending_reviews') %>
 </ul>
 
+<ul id="book-list">
 <% @books.each do |book| %>
   <div id="<%=book.id%>">
     <h2>Title: <%= link_to book.title, book_path(book) %></h2>
@@ -23,3 +45,4 @@
     <img height="200" width="150" src="<%= book.thumbnail_url %>" alt="Book Thumbnail">
   </div>
 <% end %>
+</ul>
