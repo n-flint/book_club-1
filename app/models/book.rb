@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  validates :title, presence: true, uniqueness: true, length: { maximum: 75}
+  validates :title, presence: true, uniqueness: true, length: { maximum: 75 }
   validates :page_count, presence: true, numericality: { greater_than: 0, only_integer: true }
   validates :pub_year, presence: true, numericality: {greater_than: 1000, less_than: 2030, only_integer: true}
   validates :thumbnail_url, presence: true

@@ -29,7 +29,6 @@ RSpec.describe Book, type: :model do
         it { should validate_numericality_of :page_count}
         it { should validate_numericality_of :pub_year}
         it { should validate_uniqueness_of :title}
-
     end
 
     describe "relationships" do
