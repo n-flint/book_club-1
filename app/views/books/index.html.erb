@@ -14,6 +14,7 @@
   <div id="<%=book.id%>">
     <h2>Title: <%= link_to book.title, book_path(book) %></h2>
     <h5>Average score: <%= book.average_review_score %></h5>
+    <h5>Total reviews: <%= book.review_count %></h5>
     <ul>Author(s): <% book.authors.each do |author|%>
       <li><%= author.name %></li>
       <% end %></ul>

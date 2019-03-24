@@ -19,10 +19,10 @@ RSpec.describe 'in user index', type: :feature do
     review_4 = book_1.reviews.create(heading: "Best Book", score: 1, full_review: "This was really something", username: "Jeremy")
 
     visit '/books'
-    save_and_open_page
     within "##{book_1.id}" do
       expect(page).to have_link("#{book_1.title}")
       expect(page).to have_content("Average score: 3")
+      expect(page).to have_content("Total reviews: 2")
       expect(page).to have_content("Author(s): Sandi Metz")
       expect(page).to have_content("Pages: #{book_1.page_count}")
       expect(page).to have_content("Publication Year: #{book_1.pub_year}")
@@ -30,6 +30,7 @@ RSpec.describe 'in user index', type: :feature do
     end
     within "##{book_2.id}" do
       expect(page).to have_content("Title: #{book_2.title}")
+      expect(page).to have_content("Total reviews: 2")
       expect(page).to have_content("Author(s): James S.A. Corey")
       expect(page).to have_content("Pages: #{book_2.page_count}")
       expect(page).to have_content("Publication Year: #{book_2.pub_year}")
