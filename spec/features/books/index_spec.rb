@@ -11,22 +11,29 @@ RSpec.describe 'in user index', type: :feature do
                          page_count: 583,
                          pub_year: 2017,
                          thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg")
-
+     review_3 = book_2.reviews.create(heading: "Best Book", score: 5, full_review: "This was really something", username: "Jeremy")
+     review_2 = book_2.reviews.create(heading: "What?", score: 3, full_review: "I can't tell if this book is good or not", username: "Tupac")
+     review_1 = book_1.reviews.create(heading: "Great", score: 5, full_review: "Read this", username: "Tupac")
+     review_4 = book_1.reviews.create(heading: "Best Book", score: 1, full_review: "This was really something", username: "Jeremy")
 
     visit '/books'
-
-    expect(page).to have_link("#{book_1.title}")
-    # expect(page).to have_content("Author: #{book_1.author}")
-    expect(page).to have_content("Pages: #{book_1.page_count}")
-    expect(page).to have_content("Publication Year: #{book_1.pub_year}")
-    # expect(page).to have_content("Title: #{book_1.thumbnail_url}")
-    expect(page).to have_content("Title: #{book_2.title}")
-    # expect(page).to have_content("Author: #{book_2.author}")
-    expect(page).to have_content("Pages: #{book_2.page_count}")
-    expect(page).to have_content("Publication Year: #{book_2.pub_year}")
+    within "##{book_1.id}" do
+      expect(page).to have_link("#{book_1.title}")
+      expect(page).to have_content("Average score: 3")
+      expect(page).to have_content("Author: #{book_1.authors}")
+      expect(page).to have_content("Pages: #{book_1.page_count}")
+      expect(page).to have_content("Publication Year: #{book_1.pub_year}")
+      # expect(page).to have_content("Title: #{book_1.thumbnail_url}")
+    end
+    within "##{book_2.id}" do
+      expect(page).to have_content("Title: #{book_2.title}")
+      expect(page).to have_content("Author: #{book_2.authors.name}")
+      expect(page).to have_content("Pages: #{book_2.page_count}")
+      expect(page).to have_content("Publication Year: #{book_2.pub_year}")
     # expect(page).to have_content("Title: #{book_2.thumbnail_url}")
+    end
   end
-  
+
   it 'can click book title link to show page' do
     book_1 = Book.create(title: "Practical Object-Oriented Design in Ruby",
                          page_count: 247,
@@ -91,7 +98,7 @@ RSpec.describe 'in user index', type: :feature do
 
     i1 = page.body.index(@book_1.title)
     i2 = page.body.index(@book_2.title)
-    
+
     expect(i1).to be < i2
   end
 
@@ -101,7 +108,7 @@ RSpec.describe 'in user index', type: :feature do
 
     i1 = page.body.index(@book_1.title)
     i2 = page.body.index(@book_2.title)
-    
+
     expect(i1).to be > i2
   end
 
@@ -111,7 +118,7 @@ RSpec.describe 'in user index', type: :feature do
 
     i1 = page.body.index(@book_1.title)
     i2 = page.body.index(@book_2.title)
-    
+
     expect(i1).to be > i2
   end
 
@@ -121,7 +128,7 @@ RSpec.describe 'in user index', type: :feature do
 
     i1 = page.body.index(@book_1.title)
     i2 = page.body.index(@book_2.title)
-    
+
     expect(i1).to be < i2
   end
 end
