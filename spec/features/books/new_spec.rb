@@ -11,7 +11,7 @@ RSpec.describe 'new book workflow' do
       fill_in "book[pub_year]", with: 2019
       fill_in "book[page_count]", with: 1
       fill_in "book[thumbnail_url]", with: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd3cgsv8lMoNU4g8dDN1hUqKlXAR3DTITUd5rl1tMuYds_wAP6"
-      fill_in "book[authors]", with: "Jeremy"
+      fill_in "book[authors]", with: "Jeremy, Noah, Rob"
       click_button "Create Book"
       new_book = Book.last
       expect(current_path).to eq(book_path(new_book.id))
