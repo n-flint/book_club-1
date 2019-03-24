@@ -39,6 +39,23 @@ class BooksController < ApplicationController
   end
 
   def create
-    
+    @book = Book.new(book_params)
+    author_params[:authors].split(',').each do |author_param|
+      Author.find_or_create_by(name: author_param)
+    end
+    @book.save
+    redirect_to book_path(@book)
+  end
+
+  private
+
+  def book_params
+    book = params.require(:book).permit(:title, :pub_year, :page_count, :thumbnail_url)
+    book[:title].titleize
+    book
+  end
+
+  def author_params
+    params.require(:book).permit(:authors)
   end
 end
