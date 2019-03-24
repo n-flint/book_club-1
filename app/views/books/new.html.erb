@@ -1,13 +1,13 @@
 <%= form_for @book do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :pub_year %>
-  <%= f.number_field :pub_year %>
-  <%= f.label :page_count %>
-  <%= f.number_field :page_count %>
-  <%= f.label :thumbnail_url %>
-  <%= f.text_field :thumbnail_url %>
-  <%= f.label :authors %>
-  <%= f.text_field :authors %>
+  <div id="title">  <%= f.label :title %>
+  <%= f.text_field :title %></div>
+  <div id="pub-year"><%= f.label :pub_year %>
+  <%= f.number_field :pub_year %></div>
+  <div id="page-count"><%= f.label :page_count %>
+  <%= f.number_field :page_count %></div>
+  <div id="thumbnail-url"><%= f.label :thumbnail_url %>
+  <%= f.text_field :thumbnail_url %></div>
+  <div id="authors"><%= f.label :authors %>
+  <%= f.text_field :authors %></div>
   <%= f.submit %>
 <% end %>

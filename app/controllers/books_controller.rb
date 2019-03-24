@@ -43,8 +43,12 @@ class BooksController < ApplicationController
     author_params[:authors].split(',').each do |author_param|
       Author.find_or_create_by(name: author_param)
     end
-    @book.save
-    redirect_to book_path(@book)
+    if
+      @book.save!
+      redirect_to book_path(@book)
+    else
+      render :new
+    end
   end
 
   private
