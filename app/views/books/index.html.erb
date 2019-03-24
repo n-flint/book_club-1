@@ -14,6 +14,9 @@
   <div id="<%=book.id%>">
     <h2>Title: <%= link_to book.title, book_path(book) %></h2>
     <h5>Average score: <%= book.average_review_score %></h5>
+    <ul>Author(s): <% book.authors.each do |author|%>
+      <li><%= author.name %></li>
+      <% end %></ul>
     <p>Pages: <%= book.page_count %></p>
     <p>Publication Year: <%= book.pub_year %></p>
     <img height="200" width="150" src="<%= book.thumbnail_url %>" alt="Book Thumbnail">
