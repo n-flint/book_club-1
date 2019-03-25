@@ -25,7 +25,6 @@ RSpec.describe Book, type: :model do
         it { should validate_presence_of :title}
         it { should validate_presence_of :page_count}
         it { should validate_presence_of :pub_year}
-        it { should validate_presence_of :thumbnail_url}
         it { should validate_numericality_of :page_count}
         it { should validate_numericality_of :pub_year}
         it { should validate_uniqueness_of :title}
