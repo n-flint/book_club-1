@@ -11,12 +11,14 @@ RSpec.describe 'new book workflow' do
       fill_in "book[pub_year]", with: 2019
       fill_in "book[page_count]", with: 1
       fill_in "book[thumbnail_url]", with: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd3cgsv8lMoNU4g8dDN1hUqKlXAR3DTITUd5rl1tMuYds_wAP6"
-      fill_in "book[authors]", with: "Jeremy, Noah, Rob"
+      fill_in "book[authors]", with: "jeremy, noah, rob"
       click_button "Create Book"
       new_book = Book.last
       expect(current_path).to eq(book_path(new_book.id))
-      expect(page).to have_content("My crappy book")
-      expect(page).to have_content("2019")
+      expect(page).to have_content("Title: #{new_book.title}")
+      expect(page).to have_content("Publication Year: #{new_book.pub_year}")
+      expect(page).to have_content("Page Count: #{new_book.page_count}")
+      expect(page).to have_content("Author(s): Jeremy Noah Rob")
     end
   end
   # context "sad path" do
