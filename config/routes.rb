@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resources :authors, only: [:new, :create, :destroy]
   end
 
+  resources :authors, only: [:show]
+
   resources :reviews, only: [:index]
 end

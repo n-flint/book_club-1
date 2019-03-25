@@ -31,6 +31,10 @@ class Book < ApplicationRecord
     reviews.count
   end
 
+  def coauthors(excluded_author)
+    authors.where.not(id: excluded_author.id)
+  end
+
   def self.highest_three_scores
     highest_scores = Book.all.sort_by do |book|
        book.average_review_score

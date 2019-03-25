@@ -7,7 +7,7 @@
   <%= f.number_field :page_count %></div>
   <div id="thumbnail-url"><%= f.label :thumbnail_url %>
   <%= f.text_field :thumbnail_url %></div>
-  <div id="authors"><%= f.label :authors %>
-  <%= f.text_field :authors %></div>
+  <div id="authors"><%= label_tag :authors %>
+  <%= text_field_tag :authors %></div>
   <%= f.submit %>
 <% end %>

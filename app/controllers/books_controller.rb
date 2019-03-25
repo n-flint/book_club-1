@@ -42,8 +42,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-      if
-      @book.save!
+      if @book.save
       author_params[:authors].split(',').each do |author_param|
         @book.authors.find_or_create_by(name: author_param.strip)
       end
@@ -67,6 +66,6 @@ class BooksController < ApplicationController
   end
 
   def author_params
-    params.require(:book).permit(:authors)
+    params.permit(:authors)
   end
 end

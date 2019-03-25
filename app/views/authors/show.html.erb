@@ -1,0 +1,21 @@
+<h1><%= @author.name %></h1>
+<h2>Books:</h2>
+
+<ul id='author-books-list'>
+    <% @author.books.each do |book| %>
+        <ul id="<%= book.id %>">
+        <li><%= link_to book.title, book_path(book) %></li>
+        <li><%= book.page_count %></li>
+        <li><%= book.pub_year %></li>
+        <ul><% book.coauthors(@author).each do |author| %>
+            <li><%= author.name %></li>
+            <% end %>
+        </ul>
+        <br>
+        <li><img src="<%= book.thumbnail_url %>" alt="Book Thumbnail"></li>
+        <li><%= book.highest_three_reviews[0].username %></li>
+        <li><%= book.highest_three_reviews[0].score %>/5</li>
+        <li><%= book.highest_three_reviews[0].heading %></li>
+        </ul>
+    <% end %> 
+</ul>
