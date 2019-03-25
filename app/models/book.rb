@@ -3,8 +3,8 @@ class Book < ApplicationRecord
   validates :page_count, presence: true, numericality: { greater_than: 0, only_integer: true }
   validates :pub_year, presence: true, numericality: {greater_than: 1000, less_than: 2030, only_integer: true}
 
-  has_many :reviews
-  has_many :bookauthors
+  has_many :reviews, dependent: :destroy
+  has_many :bookauthors, dependent: :destroy
   has_many :authors, through: :bookauthors
 
   before_save { self.title = self.title.titleize }
