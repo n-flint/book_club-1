@@ -71,4 +71,16 @@ RSpec.describe 'in book show page', type: :feature do
     click_on('<< Back to Books Home')
     expect(current_path).to eq(books_path)
   end
+
+  it 'can delete a book' do
+    book_1 = Book.create(title: "Practical Object-Oriented Design in Ruby",
+                         page_count: 247,
+                         pub_year: 2013,
+                         thumbnail_url: "https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w")
+    author_1 = book_1.authors.create(name: "Sandi Metz")
+    review_1a = book_1.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
+
+    visit book_path(book_1)
+    click_on "Delete Book"
+  end
 end
