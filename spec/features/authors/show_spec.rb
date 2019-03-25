@@ -67,7 +67,7 @@ RSpec.describe 'When a user visits the author show page', type: :feature do
     click_link "Delete Author"
     expect(current_path).to eq(books_path)
     expect(page).to_not have_content(@book_4.title)
-    expect(page).to have_content(@book_2)
+    expect(page).to have_content(@book_2.title)
     expect(Book.all.count).to eq(3)
   end
 end
