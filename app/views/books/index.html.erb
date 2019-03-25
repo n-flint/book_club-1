@@ -5,7 +5,7 @@
   <h3>Highest Rated Books</h3>
   <div id="top-rated">
       <% @stat_books.highest_three_scores.each do |book| %>
-      <li>Title: <%= book.title %></li>
+      <li>Title: <%= link_to book.title, book_path(book) %></li>
       <li>Rating: <%= book.average_review_score %></li>
         <br>
       <% end %>
@@ -14,7 +14,7 @@
   <h3>Lowest Rated Books</h3>
   <div id="lowest-rated">
       <% @stat_books.lowest_three_scores.each do |book| %>
-        <li>Title: <%= book.title %></li>
+        <li>Title: <%= link_to book.title, book_path(book) %></li>
         <li>Rating: <%= book.average_review_score %></li>
         <br>
       <% end %>
