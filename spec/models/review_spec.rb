@@ -48,10 +48,6 @@ RSpec.describe Review, type: :model do
 
         expect(actual).to eq(expected)
       end
-
-      xit '.top_three_reviewer_averages' do
-        actual = Review.top_three_reviewer_averages
-      end
     end
 
 end

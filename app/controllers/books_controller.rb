@@ -2,6 +2,7 @@ class BooksController < ApplicationController
 
   def index
     @stat_books = Book.all
+    @user_reviews = Review.all
     if params[:sort] == "descending_pages"
       @books = Book.order(page_count: :desc)
     elsif params[:sort] == "ascending_pages"

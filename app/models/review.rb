@@ -20,5 +20,6 @@ class Review < ApplicationRecord
     sorted_reviewers = reviewer_count.sort_by {|reviewer, count| count}
 
     sorted_reviewers.reverse[0..2]
+
   end
 end

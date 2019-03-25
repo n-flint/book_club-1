@@ -3,23 +3,31 @@
 
 <ul id="stats-box">
   <h3>Highest Rated Books</h3>
-  <li id="top-rated">
+  <div id="top-rated">
       <% @stat_books.highest_three_scores.each do |book| %>
-        <%= book.title %>
-        <%= book.average_review_score %>
+      <li>Title: <%= book.title %></li>
+      <li>Rating: <%= book.average_review_score %></li>
         <br>
       <% end %>
-  </li>
+  </div>
   <br>
   <h3>Lowest Rated Books</h3>
-  <li id="lowest-rated">
+  <div id="lowest-rated">
       <% @stat_books.lowest_three_scores.each do |book| %>
-        <%= book.title %>
-        <%= book.average_review_score %>
+        <li>Title: <%= book.title %></li>
+        <li>Rating: <%= book.average_review_score %></li>
         <br>
       <% end %>
-  </li>
-  
+  </div>
+  <h3>Most Active Users</h3>
+  <div id="user-review-stats">
+    <% @user_reviews.top_three_reviewers.each do |review_pair| %>
+      <li>User: <%= review_pair[0] %></li>
+      <li>Review Count: <%= review_pair[1] %></li>
+      <br>
+    <% end %>
+  </div>
+  <br>
 </ul>
 
 <ul class='sort-links'>
