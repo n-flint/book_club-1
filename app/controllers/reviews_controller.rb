@@ -26,8 +26,6 @@ class ReviewsController < ApplicationController
 
 private
   def review_params
-    rp = params.require(:review).permit(:heading, :score, :full_review, :username)
-    rp[:username].titleize
-    rp
+    params.require(:review).permit(:heading, :score, :full_review, :username)
   end
 end

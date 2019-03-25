@@ -18,7 +18,7 @@ RSpec.describe "as a visitor" do
     fill_in "review[heading]", with: "Meh..."
     fill_in "review[score]", with: 2
     fill_in "review[full_review]", with: "By far, the most average book I have ever read"
-    fill_in "review[username]", with: "Noah"
+    fill_in "review[username]", with: "noah"
 
     click_button "Create Review"
     new_review = Review.last
@@ -26,5 +26,6 @@ RSpec.describe "as a visitor" do
     expect(current_path).to eq(book_path(@book_1))
     expect(new_review.book).to eq(@book_1)
     expect(new_review.heading).to eq("Meh...")
+    expect(new_review.username).to eq("Noah")
   end
 end
