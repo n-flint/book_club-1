@@ -44,16 +44,26 @@ RSpec.describe Book, type: :model do
     end
 
     describe "instance methods" do
-      it ".highest_three_reviews" do
+      it "#highest_three_reviews" do
         expect(@book_1.highest_three_reviews).to eq([@review_1a, @review_1b, @review_1c])
       end
 
-      it ".lowest_three_reviews" do
+      it "#lowest_three_reviews" do
         expect(@book_1.lowest_three_reviews).to eq([@review_1d, @review_1c, @review_1b])
       end
 
-      it ".average_review_score" do
+      it "#average_review_score" do
         expect(@book_1.average_review_score).to eq(3)
+      end
+
+      it ".coauthors" do
+        book_1 = Book.create!(title: "Testy testes Book", page_count: 420, pub_year: 1348, thumbnail_url: "https://i.pinimg.com/originals/2e/42/d2/2e42d25ee87ad6bb5f512bd86e099233.jpg")
+        author_1 = book_1.authors.create(name: "Sandi Metz")
+        author_2 = book_1.authors.create(name: "Bob Ross")
+        author_3 = book_1.authors.create(name: "Johnny Tsunami")
+
+        expect(book_1.coauthors(author_1)).to eq([author_2, author_3])
+
       end
     end 
 
