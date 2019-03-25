@@ -10,12 +10,15 @@
         <ul><li><%= author.name %></li></ul>
         <% end %></li>
       <li><img src="<%= @book.thumbnail_url %>" alt="Book Thumbnail"></li>
+      <br>
       <li>Reviews:<% @book.reviews.each do |review|%>
         <ul><li>Review title: <%= review.heading %></li>
             <li>Reviewed by: <%= review.username %></li>
             <li>Rating: <%= review.score %>/5</li>
             <li><%= review.full_review %></li></ul>
+            <br>
         <% end %></li>
+        <br>
         <ul id="review-stats">Review Stats:
           <ul id="highest">
             <li>Highest 3 Reviews: <% @book.highest_three_reviews.each do |review| %>
@@ -23,6 +26,7 @@
                 <li><%= review.heading %></li>
                 <li><%= review.score %>/5</li>
                 <li><%= review.username %></li>
+                <br>
               </ul>
             <% end %></li>
           </ul>
@@ -32,6 +36,7 @@
                 <li><%= review.heading %></li>
                 <li><%= review.score %>/5</li>
                 <li><%= review.username %></li>
+                <br>
               </ul>
             <% end %></li>
           </ul>

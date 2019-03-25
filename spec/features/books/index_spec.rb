@@ -44,10 +44,11 @@ RSpec.describe 'in user index', type: :feature do
                          pub_year: 2013,
                          thumbnail_url: "https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w")
     visit books_path
+    within '#book-list' do
+      click_link "#{book_1.title}"
 
-    click_link "#{book_1.title}"
-
-    expect(current_path).to eq(book_path(book_1))
+      expect(current_path).to eq(book_path(book_1))
+    end
   end
 
   it 'can click Most Pages link to sort by descending page length' do
