@@ -6,9 +6,9 @@
   <p>
     <ul><li>Page Count: <%= @book.page_count %></li>
       <li>Publication Year: <%= @book.pub_year %></li>
-      <li>Author(s):<% @book.authors.each do |author|%>
-        <ul><li><%= author.name %></li></ul>
-        <% end %></li>
+      <ul>Author(s):<% @book.authors.each do |author|%>
+        <li><%= author.name %></li>
+        <% end %></ul>
       <li><img src="<%= @book.thumbnail_url %>" alt="Book Thumbnail"></li>
       <li>Reviews:<% @book.reviews.each do |review|%>
         <ul><li>Review title: <%= review.heading %></li>

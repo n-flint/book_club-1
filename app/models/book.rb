@@ -8,6 +8,8 @@ class Book < ApplicationRecord
   has_many :bookauthors
   has_many :authors, through: :bookauthors
 
+  before_save { self.title = self.title.titleize }
+
   def highest_three_reviews
     reviews.order(:score).last(3).reverse
   end

@@ -22,7 +22,6 @@ RSpec.describe 'in book show page', type: :feature do
     review_2d = book_2.reviews.create(score: 1, heading: 'space melodrama', full_review: 'Ian is not impressed', username: 'Ian')
 
     visit book_path(book_1)
-
     expect(page).to have_content("Title: #{book_1.title}")
     expect(page).to have_content("Average Review Score: #{book_1.average_review_score}")
     expect(page).to have_content("Total Reviews: #{book_1.review_count}")
