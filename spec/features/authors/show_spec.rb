@@ -14,6 +14,7 @@ RSpec.describe 'When a user visits the author show page', type: :feature do
     @book_4 = Book.create!(title: "Don Quixote", page_count: 928, pub_year: 1605, thumbnail_url: "https://i.pinimg.com/originals/2e/42/d2/2e42d25ee87ad6bb5f512bd86e099233.jpg")
     @author_1 = @book_1.authors.create(name: "Sandi Metz")
     @author_2 = @book_1.authors.create(name: "James S.A. Corey")
+    @author_3 = @book_4.authors.create(name: "Bob Ross")
     @author_1.books << @book_3
     # @book_1.authors << @author_2
     @review_1a = @book_1.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
@@ -25,8 +26,8 @@ RSpec.describe 'When a user visits the author show page', type: :feature do
     @review_4a = @book_4.reviews.create(score: 4, heading: 'test it loooong', full_review: 'who has time to read this', username: 'Ian')
     @review_4b = @book_4.reviews.create(score: 4, heading: 'test it good', full_review: 'test it test it real goooooodd', username: 'Ian')
   end
-  
-  
+
+
   it 'should show the book title' do
     visit author_path(@author_1)
 
@@ -58,6 +59,15 @@ RSpec.describe 'When a user visits the author show page', type: :feature do
         expect(page).to have_content(@review_1a.username)
         expect(page).to_not have_content(@review_1b.heading)
     end
+  end
 
+  it 'can delete an author' do
+    visit author_path(@author_3)
+    expect(Book.all.count).to eq(4)
+    click_link "Delete Author"
+    expect(current_path).to eq(books_path)
+    expect(page).to_not have_content(@book_4.title)
+    expect(page).to have_content(@book_2.title)
+    expect(Book.all.count).to eq(3)
   end
 end

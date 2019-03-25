@@ -88,7 +88,6 @@ RSpec.describe 'in book show page', type: :feature do
 
     visit book_path(book_1)
     click_on "Delete Book"
-
     expect(current_path).to eq(books_path)
     expect(page).to have_content("#{book_2.title}")
     expect(page).to_not have_content("#{book_1.title}")
