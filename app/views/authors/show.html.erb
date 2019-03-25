@@ -17,5 +17,6 @@
         <li><%= book.highest_three_reviews[0].score %>/5</li>
         <li><%= book.highest_three_reviews[0].heading %></li>
         </ul>
-    <% end %> 
+    <% end %>
+    <%= link_to "Delete Author", author_path(@author), method: :delete %>
 </ul>
