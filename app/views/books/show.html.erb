@@ -46,3 +46,5 @@
 <%= link_to "<< Back to Books Home", books_path %>
 
 <%= link_to "Add Review", new_book_review_path(@book) %>
+
+<%= link_to "Delete Book", book_path(@book), method: :delete %>
