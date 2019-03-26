@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :authors, only: [:show, :destroy]
+    resources :books, only: [:destroy]
 
   resources :reviews, only: [:index, :destroy]
 end
