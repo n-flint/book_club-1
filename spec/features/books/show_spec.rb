@@ -108,12 +108,13 @@ RSpec.describe 'in book show page', type: :feature do
     review_2a = book_2.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
 
     visit book_path(book_1)
+
     click_link "#{author_1.name}"
 
     expect(current_path).to eq(author_path(author_1))
   end
 
-  it 'user names are links' do
+  xit 'user names are links' do
     book_1 = Book.create(title: "Practical Object-Oriented Design in Ruby",
                          page_count: 247,
                          pub_year: 2013,
@@ -128,7 +129,10 @@ RSpec.describe 'in book show page', type: :feature do
     review_2a = book_2.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
 
     visit book_path(book_1)
-    click_link "#{review_1a.username}"
+    save_and_open_page
+    within "review-#{review_1a.id}" do
+      click_link "#{review_1a.username}"
+    end
 
     expect(current_path).to eq(reviews_path(arg: review_1a.username))
   end

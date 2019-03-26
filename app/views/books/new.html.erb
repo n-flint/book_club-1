@@ -2,7 +2,7 @@
   <div id="title">  <%= f.label :title %>
   <%= f.text_field :title %></div>
   <div id="pub-year"><%= f.label :pub_year %>
-  <%= f.number_field :pub_year %></div>
+  <%= f.number_field :pub_year, in: 1000..Time.now.year %></div>
   <div id="page-count"><%= f.label :page_count %>
   <%= f.number_field :page_count %></div>
   <div id="thumbnail-url"><%= f.label :thumbnail_url %>
