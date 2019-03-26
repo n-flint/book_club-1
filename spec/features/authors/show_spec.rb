@@ -69,5 +69,19 @@ RSpec.describe 'When a user visits the author show page', type: :feature do
     expect(page).to_not have_content(@book_4.title)
     expect(page).to have_content(@book_2.title)
     expect(Book.all.count).to eq(3)
+
+    book_5 = Book.create!(title: "This better work",
+                        page_count: 123,
+                        pub_year: 2019,
+                        thumbnail_url: "")
+    review_10 = book_5.reviews.create(score: 5, heading: "Cool", full_review: "great stuff", username: "Jean-Luc Picard")
+    author_3 = book_5.authors.create(name: "Jeremy")
+    author_4 = book_5.authors.create(name: "Noah")
+    author_5 = book_5.authors.create(name: "Rob")
+    visit author_path(author_3)
+    click_on "Delete Author"
+    expect(current_path).to eq(books_path)
+    expect(page).to have_content("#{@book_2.title}")
+    expect(page).to_not have_content("#{book_5.title}")
   end
 end
