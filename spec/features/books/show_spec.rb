@@ -132,7 +132,7 @@ RSpec.describe 'in book show page', type: :feature do
     within "#review-#{review_1a.id}" do
       click_link "#{review_1a.username}"
     end
-    save_and_open_page
-    expect(current_path).to eq('/reviews?arg=Rob')
+
+    expect(page).to have_current_path(reviews_path(arg: review_1a.username))
   end
 end
