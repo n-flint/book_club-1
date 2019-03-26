@@ -44,40 +44,51 @@ class Book < ApplicationRecord
   end
 
   def self.descending_rating
-    Book.all.sort_by do |book|
-      book.average_review_score
-    end.reverse
+    Book.joins(:reviews)
+        .select('books.*,AVG(reviews.score) AS avg_review')
+        .group(:id)
+        .order('avg_review DESC, books.title ASC')
+    
   end
 
   def self.ascending_rating
-    Book.all.sort_by do |book|
-      book.average_review_score
-    end
+    Book.joins(:reviews)
+        .select('books.*,AVG(reviews.score) AS avg_review')
+        .group(:id)
+        .order('avg_review ASC, books.title ASC')
   end
 
   def self.descending_reviews
-    Book.all.sort_by do |book|
-      book.review_count
-    end.reverse
+    Book.joins(:reviews)
+        .select('books.*,COUNT(reviews) AS review_count')
+        .group(:id)
+        .order('review_count DESC, books.title ASC')
+
+    # Book.all.sort_by do |book|
+    #   book.review_count
+    # end.reverse
   end
 
   def self.ascending_reviews
-    Book.all.sort_by do |book|
-      book.review_count
-    end
+    Book.joins(:reviews)
+        .select('books.*,COUNT(reviews) AS review_count')
+        .group(:id)
+        .order('review_count ASC, books.title ASC')
   end
 
   def self.highest_three_scores
-    highest_scores = Book.all.sort_by do |book|
-       book.average_review_score
-     end.reverse
-     highest_scores[0..2]
+    Book.joins(:reviews)
+        .select('books.*,AVG(reviews.score) AS avg_review')
+        .group(:id)
+        .order('avg_review DESC, books.title ASC')
+        .limit(3)
   end
 
   def self.lowest_three_scores
-    lowest_scores = Book.all.sort_by do |book|
-       book.average_review_score
-     end
-    lowest_scores[0..2]
+    Book.joins(:reviews)
+        .select('books.*,AVG(reviews.score) AS avg_review')
+        .group(:id)
+        .order('avg_review ASC, books.title ASC')
+        .limit(3)
   end
 end
