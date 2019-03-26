@@ -19,25 +19,24 @@ RSpec.describe 'in user index', type: :feature do
     review_4 = book_1.reviews.create(heading: "Best Book", score: 1, full_review: "This was really something", username: "Jeremy")
 
     visit '/books'
-    # save_and_open_page
     within "##{book_1.id}" do
       expect(page).to have_link("#{book_1.title}")
       expect(page).to have_content("Average score: 3")
       expect(page).to have_content("Total reviews: 2")
-      # expect(page).to have_content("Author(s): Sandi Metz")
+      expect(page).to have_content("Author(s):")
       expect(page).to have_content("Sandi Metz")
       expect(page).to have_content("Pages: #{book_1.page_count}")
       expect(page).to have_content("Publication Year: #{book_1.pub_year}")
-      # expect(page).to have_content("Title: #{book_1.thumbnail_url}")
+      expect(page).to have_xpath("//img[@src='https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w']")
     end
     within "##{book_2.id}" do
       expect(page).to have_content("Title: #{book_2.title}")
       expect(page).to have_content("Total reviews: 2")
-      # expect(page).to have_content("Author(s): James S.A. Corey")
+      expect(page).to have_content("Author(s):")
       expect(page).to have_content("James S.A. Corey")
       expect(page).to have_content("Pages: #{book_2.page_count}")
       expect(page).to have_content("Publication Year: #{book_2.pub_year}")
-    # expect(page).to have_content("Title: #{book_2.thumbnail_url}")
+      expect(page).to have_xpath("//img[@src='https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg']")
     end
   end
 
