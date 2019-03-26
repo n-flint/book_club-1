@@ -13,7 +13,7 @@
         </ul>
         <br>
         <li><img src="<%= book.thumbnail_url %>" alt="Book Thumbnail"></li>
-        <li><%= book.highest_three_reviews[0].username %></li>
+        <li><%= link_to "#{book.highest_three_reviews[0].username}", reviews_path(arg: book.highest_three_reviews[0].username) %></li>
         <li><%= book.highest_three_reviews[0].score %>/5</li>
         <li><%= book.highest_three_reviews[0].heading %></li>
         </ul>
