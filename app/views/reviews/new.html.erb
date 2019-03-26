@@ -5,7 +5,8 @@
   </p>
   <p>
     <%= f.label :score %><br/>
-    <%= f.number_field :score %>
+    <%= f.number_field :score, in: 1..5 %>
+
   </p>
   <p>
     <%= f.label :full_review %><br/>
