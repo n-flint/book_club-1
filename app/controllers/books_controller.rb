@@ -4,29 +4,17 @@ class BooksController < ApplicationController
     @stat_books = Book.all
     @user_reviews = Review.all
     if params[:sort] == "descending_pages"
-      @books = Book.order(page_count: :desc)
+      @books = Book.all.descending_pages
     elsif params[:sort] == "ascending_pages"
-      @books = Book.order(page_count: :asc)
+      @books = Book.all.ascending_pages
     elsif params[:sort] == "descending_rating"
-      ordered_books = Book.all
-      @books = ordered_books.sort_by do |book|
-        book.average_review_score
-      end.reverse
+      @books = Book.all.descending_rating
     elsif params[:sort] == "ascending_rating"
-      ordered_books = Book.all
-      @books = ordered_books.sort_by do |book|
-        book.average_review_score
-      end
+      @books = Book.all.ascending_rating
     elsif params[:sort] == "descending_reviews"
-      ordered_books = Book.all
-      @books = ordered_books.sort_by do |book|
-        book.review_count
-      end.reverse
+      @books = Book.all.descending_reviews
     elsif params[:sort] == "ascending_reviews"
-      ordered_books = Book.all
-      @books = ordered_books.sort_by do |book|
-        book.review_count
-      end
+      @books = Book.all.ascending_reviews
     else
       @books = Book.all
     end
@@ -48,7 +36,7 @@ class BooksController < ApplicationController
       end
       redirect_to book_path(@book)
     else
-      render :new
+      redirect_to new_book_path, alert: @book.errors.full_messages
     end
   end
 

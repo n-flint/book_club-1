@@ -18,6 +18,7 @@ RSpec.describe Book, type: :model do
     @review_1b = @book_1.reviews.create(score: 4, heading: 'awesome', full_review: 'code n stuff', username: 'Noah')
     @review_1c = @book_1.reviews.create(score: 2, heading: 'not good', full_review: 'wtf is ruby', username: 'Jeremy')
     @review_1d = @book_1.reviews.create(score: 1, heading: 'this is garbage', full_review: 'I know way more than Sandi', username: 'Ian')
+    @review_1e = @book_1.reviews.create(score: 3, heading: 'this is garbage', full_review: 'I know way more than Sandi', username: 'Ian')
     @review_2a = @book_2.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
     @review_2b = @book_2.reviews.create(score: 3, heading: 'meh', full_review: 'just ok', username: 'Noah')
     @review_2c = @book_2.reviews.create(score: 2, heading: 'so loooong', full_review: 'who has time to read this', username: 'Jeremy')
@@ -26,6 +27,7 @@ RSpec.describe Book, type: :model do
     @review_3b = @book_3.reviews.create(score: 5, heading: 'space melodrama', full_review: 'Ian is not impressed', username: 'Jeremy')
     @review_4a = @book_4.reviews.create(score: 4, heading: 'test it loooong', full_review: 'who has time to read this', username: 'Jeremy')
     @review_4b = @book_4.reviews.create(score: 4, heading: 'test it good', full_review: 'test it test it real goooooodd', username: 'Jeremy')
+    @review_4c = @book_4.reviews.create(score: 4, heading: 'test it good', full_review: 'test it test it real goooooodd', username: 'Jeremy')
   
   end
 
@@ -45,11 +47,11 @@ RSpec.describe Book, type: :model do
 
     describe "instance methods" do
       it "#highest_three_reviews" do
-        expect(@book_1.highest_three_reviews).to eq([@review_1a, @review_1b, @review_1c])
+        expect(@book_1.highest_three_reviews).to eq([@review_1a, @review_1b, @review_1e])
       end
 
       it "#lowest_three_reviews" do
-        expect(@book_1.lowest_three_reviews).to eq([@review_1d, @review_1c, @review_1b])
+        expect(@book_1.lowest_three_reviews).to eq([@review_1d, @review_1c, @review_1e])
       end
 
       it "#average_review_score" do
@@ -63,7 +65,6 @@ RSpec.describe Book, type: :model do
         author_3 = book_1.authors.create(name: "Johnny Tsunami")
 
         expect(book_1.coauthors(author_1)).to eq([author_2, author_3])
-
       end
     end 
 
@@ -75,6 +76,30 @@ RSpec.describe Book, type: :model do
         it ".lowest_three_scores" do
           expect(Book.lowest_three_scores).to eq([@book_2, @book_1, @book_4])
         end  
+
+        it ".descending_pages" do
+          expect(Book.descending_pages).to eq([@book_3, @book_4, @book_2, @book_1])
+        end
+
+        it ".ascending_pages" do
+          expect(Book.ascending_pages).to eq([@book_1, @book_2, @book_4, @book_3])
+        end
+
+        it ".descending_rating" do
+          expect(Book.descending_rating).to  eq([@book_3, @book_4, @book_1, @book_2])
+        end
+
+        it ".ascending_rating" do
+          expect(Book.ascending_rating).to eq([@book_2, @book_1, @book_4, @book_3])
+        end
+
+        it ".descending_reviews" do
+          expect(Book.descending_reviews).to eq([@book_1, @book_2, @book_4, @book_3])
+        end
+
+        it ".ascending_reviews" do
+          expect(Book.ascending_reviews).to eq([@book_3, @book_4, @book_2, @book_1])
+        end
     end
 
 

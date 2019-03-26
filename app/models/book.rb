@@ -35,6 +35,38 @@ class Book < ApplicationRecord
     authors.where.not(id: excluded_author.id)
   end
 
+  def self.descending_pages
+    Book.order(page_count: :desc)
+  end
+
+  def self.ascending_pages
+    Book.order(page_count: :asc)
+  end
+
+  def self.descending_rating
+    Book.all.sort_by do |book|
+      book.average_review_score
+    end.reverse
+  end
+
+  def self.ascending_rating
+    Book.all.sort_by do |book|
+      book.average_review_score
+    end
+  end
+
+  def self.descending_reviews
+    Book.all.sort_by do |book|
+      book.review_count
+    end.reverse
+  end
+
+  def self.ascending_reviews
+    Book.all.sort_by do |book|
+      book.review_count
+    end
+  end
+
   def self.highest_three_scores
     highest_scores = Book.all.sort_by do |book|
        book.average_review_score
