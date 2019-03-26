@@ -28,7 +28,7 @@ RSpec.describe Book, type: :model do
     @review_4a = @book_4.reviews.create(score: 4, heading: 'test it loooong', full_review: 'who has time to read this', username: 'Jeremy')
     @review_4b = @book_4.reviews.create(score: 4, heading: 'test it good', full_review: 'test it test it real goooooodd', username: 'Jeremy')
     @review_4c = @book_4.reviews.create(score: 4, heading: 'test it good', full_review: 'test it test it real goooooodd', username: 'Jeremy')
-  
+
   end
 
     describe "validations" do
@@ -43,6 +43,17 @@ RSpec.describe Book, type: :model do
     describe "relationships" do
         it { should have_many :reviews}
         it { should have_many(:authors).through(:bookauthors)}
+    end
+
+    describe "before save" do
+      it "adds default thumbnail_url" do
+        book_3 = Book.create!(title: "Stupid Book",
+                             page_count: 583,
+                             pub_year: 2017,
+                             thumbnail_url: "")
+        expected = book_3.thumbnail_url
+        expect(expected).to eq("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd3cgsv8lMoNU4g8dDN1hUqKlXAR3DTITUd5rl1tMuYds_wAP6")
+      end
     end
 
     describe "instance methods" do
@@ -66,7 +77,7 @@ RSpec.describe Book, type: :model do
 
         expect(book_1.coauthors(author_1)).to eq([author_2, author_3])
       end
-    end 
+    end
 
     describe 'class methods' do
         it ".highest_three_scores" do
@@ -75,7 +86,7 @@ RSpec.describe Book, type: :model do
 
         it ".lowest_three_scores" do
           expect(Book.lowest_three_scores).to eq([@book_2, @book_1, @book_4])
-        end  
+        end
 
         it ".descending_pages" do
           expect(Book.descending_pages).to eq([@book_3, @book_4, @book_2, @book_1])
