@@ -37,7 +37,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book)
     else
       render :new
-    end
+      end
   end
 
   def destroy
