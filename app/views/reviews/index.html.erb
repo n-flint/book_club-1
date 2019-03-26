@@ -12,5 +12,8 @@
     <p><%= r.full_review %></p>
     <p><%= r.created_at.to_date.to_s %></p>
     <%= image_tag "#{r.book.thumbnail_url}" %></p>
+    <!-- <p><%= link_to "Delete Review", book_review_path(book_id: r.book.id, id: r.id), method: :delete %></p> -->
+    <p><%= link_to "Delete Review", review_path(r.id), method: :delete %></p>
+
   </section>
 <% end %>

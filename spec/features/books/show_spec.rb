@@ -92,4 +92,44 @@ RSpec.describe 'in book show page', type: :feature do
     expect(page).to have_content("#{book_2.title}")
     expect(page).to_not have_content("#{book_1.title}")
   end
+
+  it 'author names are links' do
+    book_1 = Book.create(title: "Practical Object-Oriented Design in Ruby",
+                         page_count: 247,
+                         pub_year: 2013,
+                         thumbnail_url: "https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w")
+    author_1 = book_1.authors.create(name: "Sandi Metz")
+    review_1a = book_1.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
+    book_2 = Book.create(title: "Persepolis Rising",
+                         page_count: 583,
+                         pub_year: 2017,
+                         thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg")
+    author_2 = book_2.authors.create(name: "James S.A. Corey")
+    review_2a = book_2.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
+
+    visit book_path(book_1)
+    click_link "#{author_1.name}"
+
+    expect(current_path).to eq(author_path(author_1))
+  end
+
+  it 'user names are links' do
+    book_1 = Book.create(title: "Practical Object-Oriented Design in Ruby",
+                         page_count: 247,
+                         pub_year: 2013,
+                         thumbnail_url: "https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w")
+    author_1 = book_1.authors.create(name: "Sandi Metz")
+    review_1a = book_1.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
+    book_2 = Book.create(title: "Persepolis Rising",
+                         page_count: 583,
+                         pub_year: 2017,
+                         thumbnail_url: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg")
+    author_2 = book_2.authors.create(name: "James S.A. Corey")
+    review_2a = book_2.reviews.create(score: 5, heading: 'epic', full_review: 'nerd out', username: 'Rob')
+
+    visit book_path(book_1)
+    click_link "#{review_1a.username}"
+
+    expect(current_path).to eq(reviews_path(arg: review_1a.username))
+  end
 end

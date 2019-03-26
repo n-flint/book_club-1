@@ -4,16 +4,20 @@
 <ul id='author-books-list'>
     <% @author.books.each do |book| %>
         <ul id="<%= book.id %>">
-        <li><%= link_to book.title, book_path(book) %></li>
-        <li><%= book.page_count %></li>
-        <li><%= book.pub_year %></li>
-        <ul><% book.coauthors(@author).each do |author| %>
-            <li><%= author.name %></li>
-            <% end %>
-        </ul>
+          <li><%= link_to book.title, book_path(book) %></li>
+          <li><%= book.page_count %></li>
+          <li><%= book.pub_year %></li>
+          <li><%= book.highest_three_reviews[0].username %></li>
+          <li><%= book.highest_three_reviews[0].score %>/5</li>
+          <li><%= book.highest_three_reviews[0].heading %></li>
+          <ul><% book.coauthors(@author).each do |author| %>
+              <li><%= author.name %></li>
+              <% end %>
+          </ul>
         <br>
         <li><img src="<%= book.thumbnail_url %>" alt="Book Thumbnail"></li>
-        <li><%= book.highest_three_reviews[0].username %></li>
+
+        <li><%= link_to "#{book.highest_three_reviews[0].username}", reviews_path(arg: book.highest_three_reviews[0].username) %></li>
         <li><%= book.highest_three_reviews[0].score %>/5</li>
         <li><%= book.highest_three_reviews[0].heading %></li>
         </ul>

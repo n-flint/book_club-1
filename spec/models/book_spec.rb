@@ -65,7 +65,6 @@ RSpec.describe Book, type: :model do
         author_3 = book_1.authors.create(name: "Johnny Tsunami")
 
         expect(book_1.coauthors(author_1)).to eq([author_2, author_3])
-
       end
     end 
 

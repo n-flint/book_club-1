@@ -22,7 +22,7 @@
   <h3>Most Active Users</h3>
   <div id="user-review-stats">
     <% @user_reviews.top_three_reviewers.each do |review_pair| %>
-      <li>User: <%= review_pair[0] %></li>
+      <li>User: <%= link_to "#{review_pair[0]}", reviews_path(arg: review_pair[0]) %></li>
       <li>Review Count: <%= review_pair[1] %></li>
       <br>
     <% end %>
@@ -45,9 +45,10 @@
     <h2>Title: <%= link_to book.title, book_path(book) %></h2>
     <h5>Average score: <%= book.average_review_score %></h5>
     <h5>Total reviews: <%= book.review_count %></h5>
-    <ul>Author(s): <% book.authors.each do |author|%>
-      <li><%= author.name %></li>
-      <% end %></ul>
+    <h2>Author(s):</h2>
+     <% book.authors.each do |author|%>
+      <li><%= link_to "#{author.name}", author_path(author) %></li>
+      <% end %>
     <p>Pages: <%= book.page_count %></p>
     <p>Publication Year: <%= book.pub_year %></p>
     <img height="200" width="150" src="<%= book.thumbnail_url %>" alt="Book Thumbnail">
