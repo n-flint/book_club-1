@@ -36,13 +36,8 @@ class BooksController < ApplicationController
       end
       redirect_to book_path(@book)
     else
-<<<<<<< HEAD
-      render :new
-      end
-=======
       redirect_to new_book_path, alert: @book.errors.full_messages
     end
->>>>>>> 23583755b453f73c3f08e842394b41dddc30df62
   end
 
   def destroy
