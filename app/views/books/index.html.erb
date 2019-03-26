@@ -22,7 +22,7 @@
   <h3>Most Active Users</h3>
   <div id="user-review-stats">
     <% @user_reviews.top_three_reviewers.each do |review_pair| %>
-      <li>User: <%= review_pair[0] %></li>
+      <li>User: <%= link_to "#{review_pair[0]}", reviews_path(arg: review_pair[0]) %></li>
       <li>Review Count: <%= review_pair[1] %></li>
       <br>
     <% end %>

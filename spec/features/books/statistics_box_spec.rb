@@ -25,10 +25,10 @@ describe 'a visitor sees the book index statistics box' do
     @review_4a = @book_4.reviews.create(score: 4, heading: 'test it loooong', full_review: 'who has time to read this', username: 'Ian')
     @review_4b = @book_4.reviews.create(score: 4, heading: 'test it good', full_review: 'test it test it real goooooodd', username: 'Ian')
   end
-  
+
   it 'should display the top 3 highest rated books' do
     visit books_path
-    
+
     within "#top-rated" do
         expect(page).to have_content(@book_3.title)
         expect(page).to have_content(@book_3.average_review_score)
@@ -52,12 +52,21 @@ describe 'a visitor sees the book index statistics box' do
     end
 
     within '#user-review-stats' do
-        expect(page).to have_content('User: Jeremy')
+        expect(page).to have_link('Jeremy')
         expect(page).to have_content('Review Count: 4')
         expect(page).to have_content('User: Ian')
         expect(page).to have_content('Review Count: 3')
         expect(page).to have_content('User: Noah')
-        expect(page).to have_content('Review Count: 2') 
+        expect(page).to have_content('Review Count: 2')
     end
+  end
+  it ' username is link to show page' do
+    visit books_path
+
+    within '#user-review-stats' do
+      click_link "#{@review_3b.username}"
+    end
+
+    # expect(current_path).to eq(reviews_path(arg: @review_3b.username))
   end
 end

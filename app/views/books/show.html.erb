@@ -13,7 +13,7 @@
       <br>
       <li>Reviews:<% @book.reviews.each do |review|%>
         <ul><li>Review title: <%= review.heading %></li>
-            <li>Reviewed by: <%= review.username %></li>
+            <li>Reviewed by: <%= link_to "#{review.username}", reviews_path(arg: review.username) %></li>
             <li>Rating: <%= review.score %>/5</li>
             <li><%= review.full_review %></li></ul>
             <br>
@@ -25,7 +25,7 @@
               <ul>
                 <li><%= review.heading %></li>
                 <li><%= review.score %>/5</li>
-                <li><%= review.username %></li>
+                <li><%= link_to "#{review.username}", reviews_path(arg: review.username) %></li>
                 <br>
               </ul>
             <% end %></li>
@@ -35,7 +35,7 @@
               <ul>
                 <li><%= review.heading %></li>
                 <li><%= review.score %>/5</li>
-                <li><%= review.username %></li>
+                <li><%= link_to "#{review.username}", reviews_path(arg: review.username) %></li>
                 <br>
               </ul>
             <% end %></li>
