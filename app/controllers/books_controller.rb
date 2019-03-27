@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    if Book.find_by(title: @book.title) == nil
+    if Book.find_by(title: @book.title.titleize) == nil
       if @book.save
         author_params[:authors].split(',').each do |author_param|
           if Author.find_by(name: author_param.strip.titleize)
@@ -45,7 +45,6 @@ class BooksController < ApplicationController
       end
     else
       redirect_to new_book_path
-      # alert: flash[:notice] = 'Book title already exists!'
     end
   end
 
