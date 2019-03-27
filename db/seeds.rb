@@ -44,22 +44,24 @@
 @book_5.authors.create(name: "Herman Melville")
 
 @book_6 = Book.create(title: "The Fellowship Of The Ring", page_count: 423, pub_year: 1954, thumbnail_url: @cover_6)
-@book_6.authors.create(name: "J. R. R. Tolkien")
+jrrt = @book_6.authors.create(name: "J. R. R. Tolkien")
 
 @book_7 = Book.create(title: "The Two Towers", page_count: 352, pub_year: 1954, thumbnail_url: @cover_7)
-@book_7.authors.create(name: "J. R. R. Tolkien")
+@book_7.authors << jrrt
 
 @book_8 = Book.create(title: "The Return Of The King", page_count: 416, pub_year: 1955, thumbnail_url: @cover_8)
-@book_8.authors.create(name: "J. R. R. Tolkien")
+@book_8.authors << jrrt
 
 @book_9 = Book.create(title: "The Call Of The Wild", page_count: 232, pub_year: 1903, thumbnail_url: @cover_9)
 @book_9.authors.create(name: "Jack London")
 
 @book_10 = Book.create(title: "The Talisman", page_count: 921, pub_year: 1984, thumbnail_url: @cover_10)
-@book_10.authors.create(name: "Peter Straub, Stephen King")
+@book_10.authors.create(name: "Peter Straub")
+@book_10.authors.create(name: "Stephen King")
 
 @book_11 = Book.create(title: "The Art Of Happiness: A Handbook For Living", page_count: 207, pub_year: 1998, thumbnail_url: @cover_11)
-@book_11.authors.create(name: "Dalai Lama, Howard C. Cutler")
+@book_11.authors.create(name: "Dalai Lama")
+@book_11.authors.create(name: "Howard C. Cutler")
 
 @book_12 = Book.create(title: "Into The Wild", page_count: 224, pub_year: 1996, thumbnail_url: @cover_12)
 @book_12.authors.create(name: "Jon Krakauer")

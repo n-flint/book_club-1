@@ -11,7 +11,7 @@
           <li><%= book.highest_three_reviews[0].score %>/5</li>
           <li><%= book.highest_three_reviews[0].heading %></li>
           <ul><% book.coauthors(@author).each do |author| %>
-              <li><%= author.name %></li>
+              <li><%= link_to author.name, author_path(author) %></li>
               <% end %>
           </ul>
         <br>

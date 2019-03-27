@@ -32,7 +32,13 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
       if @book.save
       author_params[:authors].split(',').each do |author_param|
-        @book.authors.find_or_create_by(name: author_param.strip)
+        # author_test = Author.find_or_create_by(name: author_param.strip)
+        # @book.authors << author_test
+        if Author.find_by(name: author_param.strip)
+          @book.authors << Author.find_by(name: author_param.strip)
+        else
+        @book.authors.create(name: author_param.strip)
+        end
       end
       redirect_to book_path(@book)
     else
