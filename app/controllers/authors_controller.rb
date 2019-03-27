@@ -1,6 +1,9 @@
 class AuthorsController < ApplicationController
     def show
         @author = Author.find(params[:id])
+        @num_reviews = @author.books.map do |book|
+          book.reviews.count
+        end
     end
 
     def destroy
