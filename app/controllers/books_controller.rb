@@ -30,13 +30,21 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    if Book.find_by(title: @book.title.titleize) == nil
       if @book.save
-      author_params[:authors].split(',').each do |author_param|
-        @book.authors.find_or_create_by(name: author_param.strip)
+        author_params[:authors].split(',').each do |author_param|
+          if Author.find_by(name: author_param.strip.titleize)
+            @book.authors << Author.find_by(name: author_param.strip.titleize)
+          else
+          @book.authors.create(name: author_param.strip)
+          end
+        end
+        redirect_to book_path(@book)
+      else
+      render :new
       end
-      redirect_to book_path(@book)
     else
-      redirect_to new_book_path, alert: @book.errors.full_messages
+      redirect_to new_book_path
     end
   end
 

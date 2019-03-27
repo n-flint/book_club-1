@@ -38,7 +38,7 @@ RSpec.describe 'When a user visits the author show page', type: :feature do
         expect(page).to have_content(@book_1.page_count)
         expect(page).to have_content(@book_1.pub_year)
         expect(page).to have_xpath("//img[@src='https://static1.squarespace.com/static/5527cdbae4b0ee7b897c2111/t/5b36361a70a6adda8def0b21/1540126277150/POODR_2e_cover_low_res.jpg?format=300w']")
-        expect(page).to have_content(@author_2.name)
+        expect(page).to have_link(@author_2.name)
         expect(page).to_not have_content(@author_1.name)
     end
 
