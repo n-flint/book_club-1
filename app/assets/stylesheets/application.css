@@ -13,3 +13,91 @@
  *= require_tree .
  *= require_self
  */
+
+ .topnav {
+    display: flex;
+    flex-direction: row;
+    min-height: 38px;
+    background-color: chocolate;
+    justify-content: center;
+    justify-content: space-evenly;
+    font-size: 3rem;
+    border: solid;
+  }
+
+  .sort-links {
+      display: flex;
+      justify-content: center;
+      justify-content: space-evenly;
+      border: solid;
+      font-size: 2rem;
+  }
+
+  #stats-box {
+      display: flex;
+      flex-direction: column;
+      align-self: auto;
+      border: solid;
+      font-size: 1.5rem;
+  }
+
+  #top-rated {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
+  }
+
+  #lowest-rated {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
+  }
+
+  #user-review-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
+  }
+
+  #book-list {
+      display: flex;
+      justify-content: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+  }
+
+  #book-card {
+      display: flex;
+      border: solid;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  #welcome-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+  }
+  #welcome-books {
+      display: flex;
+      justify-content: center;
+    
+  }
+
+  #welcome-msg {
+    display: flex;
+    justify-content: center;
+    font: bold;
+  }
+
+  h4 {
+      display: flex;
+      justify-content: center;
+  }
+
+  body {
+    background-color: bisque;
+  }
