@@ -41,7 +41,7 @@ class BooksController < ApplicationController
         end
         redirect_to book_path(@book)
       else
-      redirect_to new_book_path, alert: @book.errors.full_messages
+      render :new
       end
     else
       redirect_to new_book_path

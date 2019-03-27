@@ -76,7 +76,9 @@ RSpec.describe 'new book workflow' do
       fill_in "book[thumbnail_url]", with: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd3cgsv8lMoNU4g8dDN1hUqKlXAR3DTITUd5rl1tMuYds_wAP6"
       fill_in "authors", with: "Jeremy"
       click_button "Create Book"
-      expect(current_path).to eq(new_book_path)
+      expect(current_path).to eq(books_path)
+      expect(page).to have_content("Title can't be blank")
+      expect(Book.all.count).to eq(0)
     end
 
     it "should not allow invalid inputs" do
