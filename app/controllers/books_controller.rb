@@ -30,19 +30,22 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    if Book.find_by(title: @book.title) == nil
       if @book.save
-      author_params[:authors].split(',').each do |author_param|
-        # author_test = Author.find_or_create_by(name: author_param.strip)
-        # @book.authors << author_test
-        if Author.find_by(name: author_param.strip)
-          @book.authors << Author.find_by(name: author_param.strip)
-        else
-        @book.authors.create(name: author_param.strip)
+        author_params[:authors].split(',').each do |author_param|
+          if Author.find_by(name: author_param.strip.titleize)
+            @book.authors << Author.find_by(name: author_param.strip.titleize)
+          else
+          @book.authors.create(name: author_param.strip)
+          end
         end
-      end
-      redirect_to book_path(@book)
-    else
+        redirect_to book_path(@book)
+      else
       redirect_to new_book_path, alert: @book.errors.full_messages
+      end
+    else
+      redirect_to new_book_path
+      # alert: flash[:notice] = 'Book title already exists!'
     end
   end
 

@@ -21,6 +21,37 @@ RSpec.describe 'new book workflow' do
       expect(page).to have_content("Author(s): Jeremy Noah Rob")
     end
 
+    it "does not create author if they exist" do
+      visit books_path
+      click_link "Add book"
+
+      expect(current_path).to eq(new_book_path)
+      fill_in "book[title]", with: "My crappy book"
+      fill_in "book[pub_year]", with: 2019
+      fill_in "book[page_count]", with: 1
+      fill_in "book[thumbnail_url]", with: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd3cgsv8lMoNU4g8dDN1hUqKlXAR3DTITUd5rl1tMuYds_wAP6"
+      fill_in "authors", with: "jeremy, noah, rob"
+      click_button "Create Book"
+      new_book = Book.last
+      expect(current_path).to eq(book_path(new_book.id))
+      expect(page).to have_content("Title: #{new_book.title}")
+      expect(page).to have_content("Publication Year: #{new_book.pub_year}")
+      expect(page).to have_content("Page Count: #{new_book.page_count}")
+      expect(page).to have_content("Author(s): Jeremy Noah Rob")
+      expect(Author.first.books.count).to eq(1)
+
+      visit books_path
+      click_link "Add book"
+      fill_in "book[title]", with: "My second crappy book"
+      fill_in "book[pub_year]", with: 2019
+      fill_in "book[page_count]", with: 1
+      fill_in "book[thumbnail_url]", with: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd3cgsv8lMoNU4g8dDN1hUqKlXAR3DTITUd5rl1tMuYds_wAP6"
+      fill_in "authors", with: "jeremy"
+      click_button "Create Book"
+      expect(Author.first.books.count).to eq(2)
+      expect(Author.all.count).to eq(3)
+    end
+
     it "adds default thumbnail_url" do
       visit books_path
       click_link "Add book"
@@ -58,11 +89,13 @@ RSpec.describe 'new book workflow' do
 
      fill_in "book[title]", with: "Persepolis Rising"
      fill_in "book[pub_year]", with: 2017
-     fill_in "book[page_count]", with: 583
+     fill_in "book[page_count]", with: 123
      fill_in "book[thumbnail_url]", with: "https://upload.wikimedia.org/wikipedia/en/f/f5/Persepolis_Rising.jpg"
      fill_in "authors", with: "jeremy, noah, rob"
      click_button "Create Book"
      expect(current_path).to eq(new_book_path)
+     expect(Book.all.count).to eq(1)
+     expect(Book.last.page_count).to eq(583)
     end
   end
 end
